@@ -20,17 +20,24 @@ public class TraductorMorse {
 
     private void traducir(){
 
+        String[] palabras=morse.split("   ");
+
         DiccionarioMorse dm = new DiccionarioMorse();
 
-        StringTokenizer st = new StringTokenizer(this.morse," ");
+        for (String palabra: palabras) {
+            StringTokenizer st = new StringTokenizer(palabra," ");
 
-        while (st.hasMoreTokens()){
+            while (st.hasMoreTokens()){
 
-            String palabra = st.nextToken();
+                String letra = st.nextToken();
 
-            salida = salida + dm.getTraduccion(palabra);
+                salida = salida + dm.getTraduccion(letra);
 
+            }
+            salida=salida+" ";
         }
+
+
 
     }
 
