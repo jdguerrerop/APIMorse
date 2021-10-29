@@ -1,5 +1,6 @@
 package com.bootcamp.apimorse.model;
 
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class TraductorMorse {
@@ -20,18 +21,22 @@ public class TraductorMorse {
 
     private void traducir(){
 
+        String[] words = morse.split("   ");
+
         DiccionarioMorse dm = new DiccionarioMorse();
 
-        StringTokenizer st = new StringTokenizer(this.morse," ");
+        for(String s: words) {
+            StringTokenizer st = new StringTokenizer(s, " ");
+            while (st.hasMoreTokens()) {
 
-        while (st.hasMoreTokens()){
+                String palabra = st.nextToken();
 
-            String palabra = st.nextToken();
+                salida = salida + dm.getTraduccion(palabra);
 
-            salida = salida + dm.getTraduccion(palabra);
-
+            }
+            salida += " ";
         }
-
+        salida = salida.toUpperCase();
     }
 
     public String getSalida() {
